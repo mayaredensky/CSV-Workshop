@@ -11,14 +11,10 @@ function preload() {
 
   //my table is comma separated value "csv"
   //and has a header specifying the columns labels
-  function preload() {
-  table = loadTable('js/personalData.csv', 'csv', 'header');
   
-  for (let i = 0; i < table.getRowCount(); i++) {
-    imageArray[i] = loadImage('images/' + table.getString(i, 'image'));
-  }
-}
-
+  table = loadTable('js/personalData.csv', 'csv', 'header', loadImageArray);
+  
+  
 
 }
 
@@ -50,9 +46,9 @@ function setup() {
     for (let i = 0; i < table.getRowCount(); i++){
 
     //grab each of the dates
-    let date = table.getString(i, 'date');
-    
     let company = table.getString(i,'company')
+
+    let date = table.getString(i, 'date');
 
     let location = table.getString(i,'location')
 
