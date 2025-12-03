@@ -129,7 +129,7 @@ function drawTabs() {
 
     scrollY -= 1;
 
-    if (scrollY < -windowHeight - 1000) {
+    if (scrollY < -windowHeight - 1100) {
       scrollY = 0;  
     }
   }
@@ -158,7 +158,7 @@ if (activeTab === "My Chats" && chatScrolling) {
   chatScrollY -= 1;
 
   // reset when off screen
-  if (chatScrollY < -900) {
+  if (chatScrollY < -1200) {
     chatScrollY = 0;
   }
 }
