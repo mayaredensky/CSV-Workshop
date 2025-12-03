@@ -3,11 +3,31 @@ let screen = "start";
 let cartoonImg, tiktokImg;
 
 let showTabs = false;  
-let activeTab = "";    
+let activeTab = "";   
+
+let scrollY = 0 
+let scrolling = false
+
+let chatScrollY = 0;
+let chatScrolling = false;
+
+
+let tiktokImg1
+let tiktokImg2
+let tiktokImg3
+let tiktokImg4
+let tiktokImg5
+let tiktokImg6
 
 function preload() {
   cartoonImg = loadImage("images/cartoon.png");
   tiktokImg = loadImage("images/tiktok.png");
+  tiktokImg1 = loadImage("images/tiktok1.png");
+  tiktokImg2 = loadImage("images/tiktok2.png");
+  tiktokImg3 = loadImage("images/tiktok3.png");
+  tiktokImg4 = loadImage("images/tiktok4.png");
+  tiktokImg5 = loadImage("images/tiktok5.png");
+  tiktokImg6 = loadImage("images/tiktok6.png");
 }
 
 function setup() {
@@ -46,7 +66,7 @@ function drawStartScreen() {
   text("Start", width/2, height/3.5 + 93);
 }
 
-// ---------------- MAIN SCREEN -------------------
+// MAIN SCREEN 
 
 function drawMainScreen() {
   background(247, 156, 183);
@@ -62,6 +82,7 @@ function drawMainScreen() {
     drawTabs();
   }
 }
+
 
 function drawTabs() {
   fill(255);
@@ -91,6 +112,58 @@ function drawTabs() {
     text("Private DMs analyzed to\ninfluence your feed.",
          width - 140, 310);
   }
+
+    // SIMPLE SCROLLING CONTENT WHEN RECOMMENDED TAB IS OPEN
+  if (activeTab === "Recommended" && scrolling) {
+
+    fill(0);
+    textSize(16);
+    image(tiktokImg1, width - 750, windowHeight + 60 + scrollY)
+    image(tiktokImg2, width - 750, windowHeight + 390 + scrollY)
+    image(tiktokImg3, width - 750, windowHeight + 750 + scrollY)
+    image(tiktokImg4, width - 550, windowHeight + 60 + scrollY, 150, 310)
+    image(tiktokImg5, width - 550, windowHeight + 400 + scrollY, 150, 310)
+    image(tiktokImg6, width - 550, windowHeight + 750 + scrollY, 150, 310)
+
+  
+
+    scrollY -= 1;
+
+    if (scrollY < -windowHeight - 1000) {
+      scrollY = 0;  
+    }
+  }
+
+// SCROLLING TEXT WHEN MY CHATS TAB IS OPEN
+if (activeTab === "My Chats" && chatScrolling) {
+
+  fill(0);
+  textSize(16);
+
+  text("OMG THIS IS US", width - 550, windowHeight + 50 + chatScrollY);
+  text("WE HAVE TO GO HERE", width - 550, windowHeight + 100 + chatScrollY);
+  text("I NEED THIS", width - 550, windowHeight + 150 + chatScrollY)
+  text("WOWWWW", width - 550, windowHeight + 200 + chatScrollY)
+  text("THIS RESTAURANT LOOKS AMAZING", width - 550, windowHeight + 250 + chatScrollY)
+  text("UNREAL", width - 550, windowHeight + 300 + chatScrollY)
+  text("WERE DOING THIS HIKE", width - 550, windowHeight + 350 + chatScrollY)
+  text("THE ICED VANILLA LATTE LOOKS INCREDIBLE", width - 550, windowHeight + 400 + chatScrollY)
+
+
+
+
+
+
+  // move upward
+  chatScrollY -= 1;
+
+  // reset when off screen
+  if (chatScrollY < -900) {
+    chatScrollY = 0;
+  }
+}
+
+
 }
 
 function drawTabButton(label, x, y) {
@@ -128,9 +201,22 @@ if (screen === "start") {
     // CLICK TABS
     if (showTabs) {
       if (mouseX > width - 240 && mouseX < width - 40) {
-        if (mouseY > 175 && mouseY < 210) activeTab = "Recommended";
-        if (mouseY > 225 && mouseY < 260) activeTab = "My Chats";
+        if (mouseY > 175 && mouseY < 210) {
+          activeTab = "Recommended";
+          scrolling = true
+          chatScrolling = false    
+}
+
+        if (mouseY > 225 && mouseY < 260) {
+        activeTab = "My Chats";
+        scrolling = false;      // stop Recommended scrolling
+        chatScrolling = true;   // start My Chats scrolling
+        chatScrollY = 0;        // reset for clean start
+}
+
+}
+
       }
     }
   }
-}
+
