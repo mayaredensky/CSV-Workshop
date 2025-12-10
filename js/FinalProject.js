@@ -49,6 +49,7 @@ function draw() {
 function drawStartScreen() {
   background(247, 156, 183);
 
+  
   fill(0);
   textAlign(CENTER);
   textSize(22);
@@ -64,12 +65,20 @@ function drawStartScreen() {
   noStroke();
   textSize(20);
   text("Start", width/2, height/3.5 + 93);
+
 }
 
 // MAIN SCREEN 
 
 function drawMainScreen() {
   background(247, 156, 183);
+
+  stroke(0);
+  strokeWeight(2);
+  line(width - 200, 100, width - 150, 100);
+  triangle(width - 150, 100, width - 160, 90, width - 160, 110);
+
+
 
   // Draw cartoon on LEFT half
   image(cartoonImg, 50, 150, 500, 500);
@@ -118,16 +127,16 @@ function drawTabs() {
 
     fill(0);
     textSize(16);
-    image(tiktokImg1, width - 750, windowHeight + 60 + scrollY)
-    image(tiktokImg2, width - 750, windowHeight + 390 + scrollY)
-    image(tiktokImg3, width - 750, windowHeight + 750 + scrollY)
+    image(tiktokImg1, width - 850, windowHeight + 60 + scrollY)
+    image(tiktokImg2, width - 850, windowHeight + 390 + scrollY)
+    image(tiktokImg3, width - 850, windowHeight + 750 + scrollY)
     image(tiktokImg4, width - 550, windowHeight + 60 + scrollY, 150, 310)
     image(tiktokImg5, width - 550, windowHeight + 400 + scrollY, 150, 310)
     image(tiktokImg6, width - 550, windowHeight + 750 + scrollY, 150, 310)
 
   
 
-    scrollY -= 1;
+    scrollY -= 2;
 
     if (scrollY < -windowHeight - 1100) {
       scrollY = 0;  
@@ -140,22 +149,41 @@ if (activeTab === "My Chats" && chatScrolling) {
   fill(0);
   textSize(16);
 
-  text("OMG THIS IS US", width - 550, windowHeight + 50 + chatScrollY);
-  text("WE HAVE TO GO HERE", width - 550, windowHeight + 100 + chatScrollY);
-  text("I NEED THIS", width - 550, windowHeight + 150 + chatScrollY)
-  text("WOWWWW", width - 550, windowHeight + 200 + chatScrollY)
-  text("THIS RESTAURANT LOOKS AMAZING", width - 550, windowHeight + 250 + chatScrollY)
-  text("UNREAL", width - 550, windowHeight + 300 + chatScrollY)
-  text("WERE DOING THIS HIKE", width - 550, windowHeight + 350 + chatScrollY)
-  text("THE ICED VANILLA LATTE LOOKS INCREDIBLE", width - 550, windowHeight + 400 + chatScrollY)
+ // FIRST BLOCK 
+
+// LEFT COLUMN
+  text("OMG THIS IS US", width - 850, windowHeight + 50 + chatScrollY);
+  text("WE HAVE TO GO HERE", width - 850, windowHeight + 100 + chatScrollY);
+  text("I NEED THIS", width - 850, windowHeight + 150 + chatScrollY);
+  text("WOWWWW", width - 850, windowHeight + 200 + chatScrollY);
+
+// RIGHT COLUMN
+  text("THIS RESTAURANT LOOKS AMAZING", width - 550, windowHeight + 50 + chatScrollY);
+  text("UNREAL", width - 550, windowHeight + 100 + chatScrollY);
+  text("WERE DOING THIS HIKE", width - 550, windowHeight + 150 + chatScrollY);
+  text("THE ICED VANILLA LATTE LOOKS INCREDIBLE", width - 550, windowHeight + 200 + chatScrollY);
 
 
+// SECOND BLOCK (REPEATED) 
 
+let offset = 400;  // moves the second block down
+
+// LEFT COLUMN
+  text("OMG THIS IS US", width - 850, windowHeight + 50 + offset + chatScrollY);
+  text("WE HAVE TO GO HERE", width - 850, windowHeight + 100 + offset + chatScrollY);
+  text("I NEED THIS", width - 850, windowHeight + 150 + offset + chatScrollY);
+  text("WOWWWW", width - 850, windowHeight + 200 + offset + chatScrollY);
+
+// RIGHT COLUMN
+  text("THIS RESTAURANT LOOKS AMAZING", width - 550, windowHeight + 50 + offset + chatScrollY);
+  text("UNREAL", width - 550, windowHeight + 100 + offset + chatScrollY);
+  text("WERE DOING THIS HIKE", width - 550, windowHeight + 150 + offset + chatScrollY);
+  text("THE ICED VANILLA LATTE LOOKS INCREDIBLE", width - 550, windowHeight + 200 + offset + chatScrollY);
 
 
 
   // move upward
-  chatScrollY -= 1;
+  chatScrollY -= 2;
 
   // reset when off screen
   if (chatScrollY < -1200) {
